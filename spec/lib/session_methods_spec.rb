@@ -35,30 +35,30 @@ describe ApplicationController, :behaviour_type => :controller do
 
     it 'resets the session' do
       should_receive(:reset_session)
-      logout_killing_session!('admin')
+      logout_killing_session!('user')
     end
     it 'kills my auth_token cookie' do
       should_receive(:kill_remember_cookie!)
-      logout_killing_session!('admin')
+      logout_killing_session!('user')
     end
     it 'nils the current user' do
-      logout_killing_session!('admin')
-      current_user(Admin).should be_nil
+      logout_killing_session!('user')
+      current_user(User).should be_nil
     end
     it 'kills :id session' do
       session.stub!(:[]=)
       session.should_receive(:[]=).with(:user_id, nil).at_least(:once)
-      logout_killing_session!('admin')
+      logout_killing_session!('user')
     end
     it 'forgets me' do
-      current_user(Admin).remember_me
-      current_user(Admin).remember_token.should_not be_nil
-      current_user(Admin).remember_token_expires_at.should_not be_nil
-      Admin.find(@user.id).remember_token.should_not be_nil
-      Admin.find(@user.id).remember_token_expires_at.should_not be_nil
-      logout_killing_session!('admin')
-      Admin.find(@user.id).remember_token.should be_nil
-      Admin.find(@user.id
+      current_user(User).remember_me
+      current_user(User).remember_token.should_not be_nil
+      current_user(User).remember_token_expires_at.should_not be_nil
+      User.find(@user.id).remember_token.should_not be_nil
+      User.find(@user.id).remember_token_expires_at.should_not be_nil
+      logout_killing_session!('user')
+      User.find(@user.id).remember_token.should be_nil
+      User.find(@user.id
                 ).remember_token_expires_at.should be_nil
     end
   end
@@ -69,32 +69,37 @@ describe ApplicationController, :behaviour_type => :controller do
       login_as(@user)
       stub!(:reset_session)
     end
+
     it 'does not reset the session' do
       should_not_receive(:reset_session)
-      logout_keeping_session!('admin')
+      logout_keeping_session!('user')
     end
+
     it 'kills my auth_token cookie' do
       should_receive(:kill_remember_cookie!)
-      logout_keeping_session!('admin')
+      logout_keeping_session!('user')
     end
+
     it 'nils the current user' do
-      logout_keeping_session!('admin')
+      logout_keeping_session!('user')
       current_user.should be_nil
     end
+
     it 'kills :id session' do
       session.stub!(:[]=)
       session.should_receive(:[]=).with(:user_id, nil).at_least(:once)
-      logout_keeping_session!('admin')
+      logout_keeping_session!('user')
     end
+
     it 'forgets me' do
-      current_user(Admin).remember_me
+      current_user(User).remember_me
       current_user.remember_token.should_not be_nil
       current_user.remember_token_expires_at.should_not be_nil
-      Admin.find(@user.id).remember_token.should_not be_nil
-      Admin.find(@user.id).remember_token_expires_at.should_not be_nil
-      logout_keeping_session!('admin')
-      Admin.find(@user.id).remember_token.should be_nil
-      Admin.find(@user.id).remember_token_expires_at.should be_nil
+      User.find(@user.id).remember_token.should_not be_nil
+      User.find(@user.id).remember_token_expires_at.should_not be_nil
+      logout_keeping_session!('user')
+      User.find(@user.id).remember_token.should be_nil
+      User.find(@user.id).remember_token_expires_at.should be_nil
     end
   end
 
@@ -109,30 +114,30 @@ describe ApplicationController, :behaviour_type => :controller do
     end
     before do
       @user = FactoryGirl.create(:user)
-      @user = Admin.first
+      @user = User.first
       set_remember_token 'hello!', 5.minutes.from_now
       session[:user_id] = nil
     end
     it 'logs in with cookie' do
       stub!(:cookies).and_return({ :user_auth_token => 'hello!'})
-      admin_logged_in?.should be_true
+      user_logged_in?.should be_true
     end
 
     it 'fails cookie login with bad cookie' do
-      should_receive(:cookies).at_least(:once).and_return({ :auth_token => 'i_haxxor_joo', :class => "Admin" })
-      admin_logged_in?.should_not be_true
+      should_receive(:cookies).at_least(:once).and_return({ :auth_token => 'i_haxxor_joo', :class => "User" })
+      user_logged_in?.should_not be_true
     end
 
     it 'fails cookie login with no cookie' do
       set_remember_token nil, nil
       should_receive(:cookies).at_least(:once).and_return({ })
-      admin_logged_in?.should_not be_true
+      user_logged_in?.should_not be_true
     end
 
     it 'fails expired cookie login' do
       set_remember_token 'hello!', 5.minutes.ago
-      stub!(:cookies).and_return({ :auth_token => 'hello!' , :class => "Admin" })
-      admin_logged_in?.should_not be_true
+      stub!(:cookies).and_return({ :auth_token => 'hello!' , :class => "User" })
+      user_logged_in?.should_not be_true
     end
   end
 

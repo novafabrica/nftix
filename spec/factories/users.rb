@@ -21,8 +21,9 @@ FactoryGirl.define do
     u.last_name "Doe"
     u.username { FactoryGirl.generate(:name) }
     u.email { FactoryGirl.generate(:email) }
-    u.password "password123"
-    u.password_confirmation "password123"
+    u.password "password"
+    u.enabled true
+    u.password_confirmation "password"
   end
 
 end

@@ -42,4 +42,22 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  def user_login
+    User.stub!(:create_hashed_password)
+    @user = FactoryGirl.create(:user)
+    mark_as_logged_in(@user)
+  end
+
+  def mark_as_logged_in(user)
+    session["#{get_class_name user}_id".to_sym] = user.id
+  end
+
+  def login_as(user)
+    mark_as_logged_in(user)
+  end
+
+  def get_class_name(klass)
+    klass.class.name.tableize.singularize
+  end
 end

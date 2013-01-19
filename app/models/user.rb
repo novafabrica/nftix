@@ -20,7 +20,7 @@
 require 'bcrypt'
 class User < ActiveRecord::Base
   include BCrypt
-  #include Rememberable
+  include Rememberable
 
   cattr_accessor :per_page
   @@per_page = 15
@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
   # You can update :email w/o it as long as :email_confirmation is nil
   validates :previous_password, :auto_password => true, :on => :update
 
-  default_scope :order => "admins.last_name ASC, admins.first_name ASC"
+  default_scope :order => "users.last_name ASC, users.first_name ASC"
 
   before_create :create_hashed_password
   before_update :update_hashed_password
