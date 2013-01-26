@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Nftixs</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>NfTix</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <%= link_to "NFtix", tickets_path, :class => 'brand' %>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to "Tickets", tickets_path %></li>
+            <li><%= link_to "Ticket Groups", ticket_groups_path %></li>
+            <li><%= link_to "Users", users_path %></li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class='flex'>
+      <div class="container main">
+        <%= yield %>
+      </div>
+    </div>
+    <footer class='footer'>
+      ©novafabrica.com
+    </footer>
+  </body>
 </html>
+

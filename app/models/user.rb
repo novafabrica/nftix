@@ -30,10 +30,13 @@ class User < ActiveRecord::Base
   validates :first_name,  :length => {:within => 2..50}
   validates :last_name,  :length => {:within => 2..50}
 
-  validates :username,
-    :length => {:within => 8..25},
-    :format => {:with => /\A([a-z0-9_]+)\z/i},
-    :uniqueness => { :case_sensitive => false, :message => "already exists. Please try again." }
+  has_many :created_tickets, :class_name => 'Ticket', :foreign_key => 'creator_id'
+  has_many :tickets, :foreign_key => 'owner_id'
+
+  # validates :username,
+  #   :length => {:within => 8..25},
+  #   :format => {:with => /\A([a-z0-9_]+)\z/i},
+  #   :uniqueness => { :case_sensitive => false, :message => "already exists. Please try again." }
 
   validates :password,
     :length => {:within => 8..25},

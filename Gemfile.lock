@@ -112,6 +112,15 @@ GIT
       rspec-mocks (~> 2.12.0)
 
 GIT
+  remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
+  revision: 36060be332ffc8408daca5cee20ea5694261105b
+  branch: static
+  specs:
+    twitter-bootstrap-rails (2.0.7)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+
+GIT
   remote: https://github.com/novafabrica/nf-cap-plugin
   revision: 082d234dcd5ea34c1d4ef016c331bace791618da
   specs:
@@ -303,4 +312,5 @@ DEPENDENCIES
   thin
   timecop
   turbolinks
+  twitter-bootstrap-rails!
   uglifier (>= 1.0.3)

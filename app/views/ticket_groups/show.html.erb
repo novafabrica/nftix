@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ticket_group.name %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @ticket_group.position %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @ticket_group.active %>
+</p>
+
+<p>
+  <strong>Ticket count:</strong>
+  <%= @ticket_group.ticket_count %>
+</p>
+
+
+<%= link_to 'Edit', edit_ticket_group_path(@ticket_group) %> |
+<%= link_to 'Back', ticket_groups_path %>
