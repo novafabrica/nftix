@@ -30,16 +30,16 @@ describe User do
       @user= FactoryGirl.create(:user)
     end
 
-    it "should be able to authenticate a User if a created username and correct password is given" do
-      User.authenticate(@user.username, "password").should == @user
+    it "should be able to authenticate a User if a created email and correct password is given" do
+      User.authenticate(@user.email, "password").should == @user
     end
 
     it "should not authenticate a User if a username does not exist" do
-      User.authenticate("fake_username", "password").should be_false
+      User.authenticate("fake@email.com", "password").should be_false
     end
 
-    it "should not authenticate a User if a created username and incorrect password is given" do
-      User.authenticate(@user.username, "incorrect").should == false
+    it "should not authenticate a User if a created email and incorrect password is given" do
+      User.authenticate(@user.email, "incorrect").should == false
     end
 
   end
@@ -226,11 +226,6 @@ describe User do
       @user.errors[:last_name].should_not be_nil
     end
 
-    it "should be invalid without a username" do
-      @user = FactoryGirl.build(:user, :username => "")
-      @user.valid?.should be_false
-      @user.errors[:username].should_not be_nil
-    end
 
     it "should be invalid without a email" do
       @user = FactoryGirl.build(:user, :email => "")
@@ -260,29 +255,6 @@ describe User do
       @user = FactoryGirl.build(:user, :email => "c" * 256)
       @user.valid?.should be_false
       @user.errors[:email].should_not be_nil
-    end
-
-    it "should be invalid with a username greater then 25" do
-      @user = FactoryGirl.build(:user, :username => "c" * 26)
-      @user.valid?.should be_false
-      @user.errors[:username].should_not be_nil
-    end
-
-
-    it "should be invalid without a unique username" do
-      #Validate uniqueness must hit the database
-      @mock_admin = FactoryGirl.create(:user, :username => 'fotoverite')
-      lambda do
-        FactoryGirl.create(:user, :username => @mock_admin.username)
-      end.should raise_error(ActiveRecord::RecordInvalid)
-    end
-
-    it "Uniqueness should not be case sensitive" do
-      #Validate uniqueness must hit the database
-      @mock_admin = FactoryGirl.create(:user, :username => 'fotoverite')
-      lambda do
-        FactoryGirl.create(:user, :username => "FotoVerite")
-      end.should raise_error(ActiveRecord::RecordInvalid)
     end
 
     it "should be invalid without a unique email" do
