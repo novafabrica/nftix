@@ -162,35 +162,6 @@ describe User do
       end.should change(@mock_admin, :first_name).from("John").to("matthew")
     end
 
-    it "should not allow updating of email without confirmation and previous password" do
-      @mock_admin.update_attributes(:email => "matthew@aol.com")
-      @mock_admin.valid?.should be_false
-      @mock_admin.errors[:email_confirmation].should_not be_nil
-    end
-
-    it "should not allow updating of email without confirmation" do
-      @mock_admin.update_attributes(:email => "matthew@aol.com", :previous_password => "markie")
-      @mock_admin.valid?.should be_false
-      @mock_admin.errors[:email_confirmation].should_not be_nil
-    end
-
-    it "should not allow updating of email without previous_password" do
-      @mock_admin.update_attributes(:email => "matthew@aol.com", :email => "matthew@aol.com")
-      @mock_admin.valid?.should be_false
-      @mock_admin.errors[:email_confirmation].should_not be_nil
-    end
-
-    it "should not allow updating of email whith incorrect previous_password" do
-      @mock_admin.update_attributes(:email => "matthew@aol.com", :email_confirmation => "matthew@aol.com", :previous_password => "markie")
-      @mock_admin.valid?.should be_false
-      @mock_admin.errors[:previous_password].should_not be_nil
-    end
-
-    it "should allow updating of email with correct previous_password and confirmation" do
-      lambda do
-        @mock_admin.update_attributes(:email => "matthew@aol.com", :email => "matthew@aol.com", :previous_password => "password")
-      end.should change(@mock_admin, :email)
-    end
 
     it "should allow updating of password without previous_password" do
       @mock_admin.update_attributes(:password => "password", :password_confirmation => "password")

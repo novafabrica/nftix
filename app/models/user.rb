@@ -51,10 +51,8 @@ class User < ActiveRecord::Base
 
   validates :email,
     :uniqueness => {:message => "already has an account associated with it."},
-    :format => {:with => STANDARD_EMAIL_REGEX, :message => "is an invalid address"},
-    :confirmation => {:if => :email_changed? }
+    :format => {:with => STANDARD_EMAIL_REGEX, :message => "is an invalid address"}
 
-  validates :email_confirmation, :presence => true,  :on => :update, :if => :email_changed?
   # validate anytime form params include :password or :email_confirmation
   # i.e. if you send :password, you must send :previous_password
   # You can update :email w/o it as long as :email_confirmation is nil
@@ -83,7 +81,6 @@ class User < ActiveRecord::Base
   def sanitize_object
     self.password = nil
     self.password_confirmation = nil
-    self.email_confirmation = nil
   end
 
   def full_name

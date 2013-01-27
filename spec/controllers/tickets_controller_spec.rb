@@ -110,8 +110,8 @@ describe TicketsController do
         # specifies that the Ticket created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Ticket.any_instance.should_receive(:update_attributes).with({ "ticket_group_id" => "1" })
-        put :update, {:id => ticket.to_param, :ticket => { "ticket_group_id" => "1" }}, valid_session
+        Ticket.any_instance.should_receive(:update_attributes).with({ "ticket_group_id" => "2" })
+        put :update, {:id => ticket.to_param, :ticket => { "ticket_group_id" => "2" }}, valid_session
       end
 
       it "assigns the requested ticket as @ticket" do
