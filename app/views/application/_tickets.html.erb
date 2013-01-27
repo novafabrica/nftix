@@ -1,0 +1,28 @@
+<table class='table table-condensed table-striped'>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Ticket group</th>
+      <th>Name</th>
+      <th>Status</th>
+
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tickets.each do |ticket| %>
+    <tr>
+      <td><%= ticket.id %></td>
+      <td><%= ticket.ticket_group.name %></td>
+      <td><%= ticket.name %></td>
+      <td><%= ticket.status %></td>
+      <td><i class="icon-eye-open"></i> <%= link_to 'Show', ticket %></td>
+      <td><i class="icon-pencil"></i> <%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+      <td><i class="icon-trash"></i> <%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

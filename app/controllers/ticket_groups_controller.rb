@@ -10,6 +10,7 @@ class TicketGroupsController < ApplicationController
   # GET /ticket_groups/1
   # GET /ticket_groups/1.json
   def show
+    @tickets = @ticket_group.tickets
   end
 
   # GET /ticket_groups/new

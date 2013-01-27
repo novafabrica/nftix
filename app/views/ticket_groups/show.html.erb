@@ -1,9 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @ticket_group.name %>
-</p>
+<h2><%= @ticket_group.name %></h2>
 
 <p>
   <strong>Position:</strong>
@@ -23,3 +20,6 @@
 
 <%= link_to 'Edit', edit_ticket_group_path(@ticket_group) %> |
 <%= link_to 'Back', ticket_groups_path %>
+
+<h3>tickets</h3>
+<%= render 'tickets' %>
