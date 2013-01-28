@@ -32,6 +32,9 @@ class User < ActiveRecord::Base
 
   has_many :created_tickets, :class_name => 'Ticket', :foreign_key => 'creator_id'
   has_many :tickets, :foreign_key => 'owner_id'
+  has_many :comments
+  has_many :group_assignments
+  has_many :ticket_groups, :through => :ticket_groups
 
   # validates :username,
   #   :length => {:within => 8..25},

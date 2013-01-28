@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :ticket_group do
-    name 'a name'
+    name Faker::Company.name
   end
 
 end

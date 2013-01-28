@@ -13,4 +13,6 @@
 
 class TicketGroup < ActiveRecord::Base
   has_many :tickets
+  has_many :group_assignments
+  has_many :users, :through => :group_assignments
 end
