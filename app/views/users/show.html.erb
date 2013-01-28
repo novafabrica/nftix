@@ -2,7 +2,7 @@
 
 <h2><%= @user.full_name %></h2>
 <h3>tickets</h3>
-<%= render 'tickets' %>
+<%= render :partial => 'application/tickets', :locals => {:tickets => @tickets} %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

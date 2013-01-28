@@ -57,7 +57,10 @@ class TicketGroupsController < ApplicationController
   def destroy
     @ticket_group.destroy
     respond_to do |format|
-      format.html { redirect_to ticket_groups_url }
+      format.html do
+        flash[:notice] = "Group Destroyed"
+        redirect_to ticket_groups_url
+      end
       format.json { head :no_content }
     end
   end

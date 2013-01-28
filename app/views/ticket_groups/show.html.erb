@@ -22,4 +22,4 @@
 <%= link_to 'Back', ticket_groups_path %>
 
 <h3>tickets</h3>
-<%= render 'tickets' %>
+<%= render :partial => 'application/tickets', :locals => {:tickets => @tickets} %>

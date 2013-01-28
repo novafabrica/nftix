@@ -25,8 +25,7 @@
   <strong>Due date:</strong>
   <%= @ticket.due_date %>
 </p>
-
-
+<%= render :partial => 'application/tickets', :locals => {:tickets => @tickets} %>
 
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
 <%= link_to 'Back', tickets_path %>

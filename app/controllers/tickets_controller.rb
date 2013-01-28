@@ -56,7 +56,10 @@ class TicketsController < ApplicationController
   def destroy
     @ticket.destroy
     respond_to do |format|
-      format.html { redirect_to tickets_url }
+      format.html do
+        flash[:notice] = "Ticket was destroyed"
+        redirect_to tickets_url
+      end
       format.json { head :no_content }
     end
   end

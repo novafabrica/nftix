@@ -2,14 +2,14 @@
 #
 # Table name: users
 #
-#  id                        :integer(4)      not null, primary key
-#  first_name                :string(50)
-#  last_name                 :string(50)
-#  username                  :string(20)
+#  id                        :integer          not null, primary key
+#  username                  :string(255)
+#  first_name                :string(255)
+#  last_name                 :string(255)
 #  email                     :string(255)
-#  hashed_password           :string(255)     default(""), not null
-#  enabled                   :boolean(1)      default(TRUE)
-#  remember_token            :string(40)
+#  hashed_password           :string(255)
+#  remember_token            :string(255)
+#  enabled                   :boolean
 #  remember_token_expires_at :datetime
 #  created_at                :datetime
 #  updated_at                :datetime
@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
   # You can update :email w/o it as long as :email_confirmation is nil
   validates :previous_password, :auto_password => true, :on => :update
 
-  default_scope :order => "users.last_name ASC, users.first_name ASC"
+  default_scope -> { order("users.last_name ASC, users.first_name ASC") }
 
   before_create :create_hashed_password
   before_update :update_hashed_password
