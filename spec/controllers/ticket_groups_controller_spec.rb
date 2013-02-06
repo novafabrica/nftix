@@ -11,8 +11,8 @@ describe TicketGroupsController do
   let(:inner_params) {{}}
   let(:item) { @ticket_group }
   let(:singular) { item.class.to_s.underscore.downcase }
-  let(:create_redirect_path) { ticket_group_path(TicketGroup.last) }
-  let(:update_redirect_path) { ticket_group_path }
+  let(:create_redirect_path) {  }
+  let(:update_redirect_path) { }
   let(:touch_params) {{:name => "newname"}}
 
   after(:all) do
