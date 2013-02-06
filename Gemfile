@@ -13,8 +13,6 @@ gem 'sidekiq'
 gem 'nice_password'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'static'
 gem 'foreman'
-gem 'mail_view'
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,6 +24,7 @@ end
 
 group :development do
   gem 'annotate'
+  gem 'mail_view'
 end
 
 group :development, :test do
