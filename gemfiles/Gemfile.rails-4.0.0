@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 1.0.1'
 gem 'sunspot'
 gem 'sidekiq'
 gem 'nice_password'
+gem 'mail_view'
 
 group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
