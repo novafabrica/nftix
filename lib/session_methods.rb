@@ -2,7 +2,7 @@ module SessionMethods
 
   protected
 
-    def user_logged_in?
+    def logged_in?
       unless current_user(User)
         return false
       else

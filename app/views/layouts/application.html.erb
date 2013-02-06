@@ -21,14 +21,16 @@
             <li><%= link_to "Tickets", tickets_path %></li>
             <li><%= link_to "Ticket Groups", ticket_groups_path %></li>
             <li><%= link_to "Users", users_path %></li>
-            
+
           </ul>
         </div>
       </div>
     </div>
     </div>
+    <%= render(:partial => 'layouts/flash_messages') %>
+
     <div class='flex'>
-      <div class="container main">
+      <div class="container main <%= @container_class %>">
         <%= yield %>
       </div>
     </div>

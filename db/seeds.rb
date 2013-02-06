@@ -41,7 +41,8 @@ ActiveRecord::Base.connection.execute("TRUNCATE tickets")
   tickets << FactoryGirl.create(
     :ticket,
     :ticket_group => random(groups),
-    :owner => random(User.all),
+    :creator => random(User.all),
+    :assignee => random(User.all),
     :name => Faker::Company.bs,
     :description => Faker::Lorem.paragraph(3),
     :status => random(['open', 'closed', 'pending'])

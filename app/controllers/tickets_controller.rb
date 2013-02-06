@@ -1,4 +1,5 @@
 class TicketsController < ApplicationController
+  before_action :confirm_logged_in
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   # GET /tickets

@@ -1,28 +1,21 @@
-<table class='table table-condensed table-striped'>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Ticket group</th>
-      <th>Name</th>
-      <th>Status</th>
-
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% tickets.each do |ticket| %>
-    <tr>
-      <td><%= ticket.id %></td>
-      <td><%= ticket.ticket_group.name %></td>
-      <td><%= ticket.name %></td>
-      <td><%= ticket.status %></td>
-      <td><i class="icon-eye-open"></i> <%= link_to 'Show', ticket %></td>
-      <td><i class="icon-pencil"></i> <%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-      <td><i class="icon-trash"></i> <%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% tickets.each do |ticket| %>
+  <div id="ticket-#{ticket.id}" class="ticket clearfix">
+    <div class='number'>
+      <small>#</small><%= ticket.id %>
+    </div>
+    <div class='ticket-content'>
+      <div class="btn-group">
+        <a class="status btn dropdown-toggle" data-toggle="dropdown" href="#">
+          <%= ticket.status %>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <!-- dropdown menu links -->
+        </ul>
+      </div>
+      <header><h1 class='lead'><%= ticket.name %></h1></header>
+      <p><%= ticket.description %></p>
+      <small class="created-by">By <%= ticket.creator.full_name %> <%= time_ago_in_words(ticket.created_at) %></small>
+    </div>
+  </div>
+ <% end %>

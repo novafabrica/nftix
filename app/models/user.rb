@@ -90,15 +90,19 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def self.authenticate(email="", password="")
-    user = self.find_by_email(email)
+  def self.authenticate(username="", password="")
+    user = self.find_by_username(username)
     return (user && user.authentication_password  == password) ? user : false
   end
 
-  # def email_new_password(password='*encrypted*')
-  #   return false unless email.present?
-  #   PostOffice.delay.new_admin_password(self, password)
-  # end
+  def create_password_token
+    update_attribute(:password_token, User.create_token(self.username + self. email))
+  end
+
+  def email_reset_token
+    return false unless email.present?
+    PostOffice.password_reset(self).deliver
+  end
 
   # <tt>self.create_token</tt> is a general-use hashing class
   # method. Pass in any string and it will be salted and then

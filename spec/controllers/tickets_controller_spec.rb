@@ -4,6 +4,11 @@ describe TicketsController do
 
   before(:all) do
     @ticket = FactoryGirl.create(:ticket)
+    @user = FactoryGirl.create(:user)
+  end
+
+  before(:each) do
+    session['user_id'] = @user.id
   end
 
   # Setup for shared examples

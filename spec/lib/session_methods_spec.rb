@@ -120,24 +120,24 @@ describe ApplicationController, :behaviour_type => :controller do
     end
     it 'logs in with cookie' do
       stub!(:cookies).and_return({ :user_auth_token => 'hello!'})
-      user_logged_in?.should be_true
+      logged_in?.should be_true
     end
 
     it 'fails cookie login with bad cookie' do
       should_receive(:cookies).at_least(:once).and_return({ :auth_token => 'i_haxxor_joo', :class => "User" })
-      user_logged_in?.should_not be_true
+      logged_in?.should_not be_true
     end
 
     it 'fails cookie login with no cookie' do
       set_remember_token nil, nil
       should_receive(:cookies).at_least(:once).and_return({ })
-      user_logged_in?.should_not be_true
+      logged_in?.should_not be_true
     end
 
     it 'fails expired cookie login' do
       set_remember_token 'hello!', 5.minutes.ago
       stub!(:cookies).and_return({ :auth_token => 'hello!' , :class => "User" })
-      user_logged_in?.should_not be_true
+      logged_in?.should_not be_true
     end
   end
 
