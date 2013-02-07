@@ -43,7 +43,7 @@ render_views
 
       it "sends back the comment content" do
         post_create
-        Yajl::Parser.parse(response.body)['text'].should be_present
+        Yajl::Parser.parse(response.body)['html'].should be_present
       end
 
     end
@@ -66,13 +66,46 @@ render_views
 
       it "sends back no comment content" do
         post_create
-        Yajl::Parser.parse(response.body)['text'].should be_nil
+        Yajl::Parser.parse(response.body)['html'].should be_nil
       end
 
     end
 
     def post_create
       post :create, :ticket_id => @ticket.id, :comment => FactoryGirl.attributes_for(:comment)
+    end
+
+  end
+
+  describe "PUT 'Update'" do
+
+    it "sends back a un authorized status is comment does not belong to user" do
+      patch :update, :ticket_id => @ticket.id, :id => @unathorized_comment.id, :comment => {:content => "text"}
+        response.status.should eq(403)
+    end
+
+    context "success" do
+
+      before(:each) do
+        get_edit
+      end
+
+      it "sends back a success status" do
+        response.status.should eq(200)
+      end
+
+      it "sends back true as success" do
+        Yajl::Parser.parse(response.body)['success'].should be_true
+      end
+
+      it "sends back the editing form" do
+        Yajl::Parser.parse(response.body)['html'].should be_present
+      end
+
+    end
+
+    def get_edit
+      get :edit, :ticket_id => @ticket.id, :id => @comment.id
     end
 
   end
@@ -99,7 +132,7 @@ render_views
       end
 
       it "sends back the updated comment content" do
-        Yajl::Parser.parse(response.body)['text'].should == 'text'
+        Yajl::Parser.parse(response.body)['html'].should be_present
       end
 
     end
@@ -120,7 +153,7 @@ render_views
       end
 
       it "sends back no comment content" do
-        Yajl::Parser.parse(response.body)['text'].should be_nil
+        Yajl::Parser.parse(response.body)['html'].should be_nil
       end
 
     end

@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   $('form.comment_form').ajaxify_form('POST', function(node, response, textStatus){
     node.find('#comment_content').val('');
-    var $comment = $(response['text']);
+    var $comment = $(response['html']);
     bindCommentEvents($comment);
     $('#comments').append($comment);
   });
@@ -30,6 +30,11 @@ function editComment(link, response){
     return false;
     }
   );
+  $form.ajaxify_form('PUT', function(node, response, textStatus){
+    var $newComment = $(response['html']);
+    bindCommentEvents($newComment);
+    $comment.html($newComment);
+  });
   $comment.html($form);
 }
 

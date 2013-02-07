@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     if @comment.save
       render :json => {
         :success => true,
-        :text => render_to_string(:partial => "comment", :locals => {:comment => @comment })
+        :html => render_to_string(:partial => "comment", :locals => {:comment => @comment })
       }
     else
       render :status => 424, :json => {
@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       render :json => {
         :success => true,
-        :text => @comment.content
+        :html => render_to_string(:partial => "comment", :locals => {:comment => @comment })
       }
     else
       render :status => 424, :json => {
