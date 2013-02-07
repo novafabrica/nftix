@@ -13,7 +13,9 @@ gem 'sidekiq'
 gem 'nice_password'
 gem 'mail_view'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'static'
-
+gem 'redcarpet'
+gem 'mailman'
+gem 'yajl-ruby'
 
 group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
