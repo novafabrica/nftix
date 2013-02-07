@@ -13,7 +13,7 @@
           <!-- dropdown menu links -->
         </ul>
       </div>
-      <header><h1 class='lead'><%= ticket.name %></h1></header>
+      <header><h1 class='lead'><%= link_to ticket.name, ticket_path(ticket) %></h1></header>
       <p><%= ticket.description %></p>
       <small class="created-by">By <%= ticket.creator.full_name %> <%= time_ago_in_words(ticket.created_at) %></small>
     </div>

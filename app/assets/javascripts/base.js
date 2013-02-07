@@ -18,6 +18,38 @@ $(document).ready(function() {
 
 });
 
+jQuery.fn.ajaxify_form = function(method, callback) {
+  $(this).submit(function() {
+    var self = $(this);
+    $.ajax({
+      url: $(this).attr("action"),
+      type: method,
+      dataType: "Json",
+      data: $(this).serialize(),
+      success: function(response, textStatus) {
+       callback(self, response, textStatus);
+      }
+    });
+    return false;
+  });
+};
+
+jQuery.fn.ajaxify_link = function(method, callback) {
+  $(this).click(function() {
+    var self = $(this);
+    $.ajax({
+      url: $(this).attr("href"),
+      type: method,
+      dataType: "JSON",
+      data: $(this).serialize(),
+      success: function(response, textStatus) {
+       callback(self, response, textStatus);
+      }
+    });
+    return false;
+  });
+};
+
 jQuery.fn.observe_field = function(frequency, callback) {
 
     frequency = frequency * 1000; // translate to milliseconds

@@ -1,0 +1,12 @@
+<%= form_for [@ticket, @comment], :html => {:class => 'comment_form'} do |f| %>
+
+  <%= f.label :content, "Comment:" %>
+
+  <div id="comment-container">
+    <%= f.text_area(:content, :required => true, :size => "30x10") %>
+  </div>
+
+  <%= link_to("Cancel", "#", :class => 'cancel-comment-edit') if !@comment.new_record?%>
+
+  <%= f.submit "Comment" %>
+<% end %>

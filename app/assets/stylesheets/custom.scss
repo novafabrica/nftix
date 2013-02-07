@@ -1,3 +1,8 @@
+.clearfix {
+  display:block;
+  clear:both;
+}
+
 body {
   padding-top: 40px;
 }
@@ -103,6 +108,37 @@ div.main.container.centered {
     }
   }
 
+}
+
+
+.comment {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  header {
+    a {
+      margin-left:25px;
+      margin-top:20px;
+    }
+  }
+
+}
+
+form.comment_form {
+  #comment-container {
+    padding:10px;
+    border:1px solid #e6e6e6;
+    background:#f6f6f6;
+    border-radius: 5px;
+  }
+  dd {margin-left:0px;}
+  textarea#comment_content {
+    width:900px;
+    height:100px;
+  }
+  input[type='submit'] {
+    margin:20px 0px;
+    float:right;
+  }
 }
 
 footer.footer {

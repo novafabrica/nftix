@@ -17,7 +17,7 @@ describe TicketsController do
   let(:item) { @ticket }
   let(:singular) { item.class.to_s.underscore.downcase }
   let(:create_redirect_path) { ticket_path(Ticket.last) }
-  let(:update_redirect_path) { ticket_path }
+  let(:update_redirect_path) { }
   let(:touch_params) {{:name => "newname"}}
 
   after(:all) do

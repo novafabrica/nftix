@@ -1,3 +1,6 @@
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>
+
 <p id="notice"><%= notice %></p>
 <h2>#<%= @ticket.id %> - <%= @ticket.name %> <small style='margin-left:10px;'><%= @ticket.status %></small></h2>
 
@@ -26,5 +29,12 @@
   <%= @ticket.due_date %>
 </p>
 
-<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
-<%= link_to 'Back', tickets_path %>
+<hr />
+
+<h2>Comments</h2>
+
+<div id="comments">
+  <%= render :partial => "comments/comment", :collection => @ticket.comments %>
+</div>
+
+  <%= render :partial => "comments/form" %>

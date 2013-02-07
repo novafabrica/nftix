@@ -3,8 +3,6 @@ require 'ffaker'
 require 'fileutils'
 require 'open-uri'
 
-FactoryGirl.find_definitions
-
 def random(array, number=1)
   array.shuffle[0..(number - 1)].first
 end
@@ -54,7 +52,7 @@ tickets.each do |ticket|
   random([*1..10]).times do
     FactoryGirl.create(:comment,
       :ticket_id => ticket.id,
-      :user_id => random(User.all),
+      :user => random(User.all),
       :content => Faker::Lorem.paragraph(5)
     )
   end

@@ -19,6 +19,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :ticket_group
   belongs_to :creator, :class_name => 'User'
   belongs_to :assignee, :foreign_key => "owner_id", :class_name => "User"
+  has_many :comments
 
   validates :name, :presence => true
 end

@@ -19,7 +19,9 @@ Nftixs::Application.routes.draw do
     get :forgot_password
   end
 
-  resources :tickets
+  resources :tickets do
+    resources :comments, :only => [:create, :edit, :update, :destroy]
+  end
   resources :ticket_groups
   resources :users
 end

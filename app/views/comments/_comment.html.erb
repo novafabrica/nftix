@@ -1,0 +1,10 @@
+<div class="comment" data-id="<%= comment.id %>">
+  <header>
+    <h2 style="font-size:16px;float:left;"><%= comment.user.full_name %></h2>
+    <%= link_to('Edit', edit_ticket_comment_path(comment.ticket, comment), :style => "float:left;", :class => 'edit') if comment.user == @current_user %>
+    <%= link_to('Delete', ticket_comment_path(comment.ticket, comment), :style => "float:left;", :class => 'delete') if comment.user == @current_user %>
+    <span class="clearfix"></span>
+  </header>
+      <%= sanitize MARKDOWN.render(comment.content) %>
+      <small>Posted <%= time_ago_in_words(comment.created_at) %></small>
+</div>

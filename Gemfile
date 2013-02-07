@@ -13,6 +13,9 @@ gem 'sidekiq'
 gem 'nice_password'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'static'
 gem 'foreman'
+gem 'redcarpet'
+gem 'mailman'
+gem 'yajl-ruby'
 
 # Gems used only for assets and not required
 # in production environments by default.
