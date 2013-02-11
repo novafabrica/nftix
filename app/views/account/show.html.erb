@@ -1,0 +1,6 @@
+<% @groups.each do |group, tickets| %>
+<h1><%= group.name %> -  <%= tickets.count %></h1>
+
+<%= render :partial => 'tickets', :locals => {:tickets => tickets} %>
+
+<% end %>

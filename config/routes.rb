@@ -4,7 +4,7 @@ Nftixs::Application.routes.draw do
     mount MailPreview => 'mail_view'
   end
 
-  root to: 'tickets#index'
+  root to: 'account#show'
 
   get "/login" => "access#new"
   get '/forgot-password' => "access#forgot_password", :as => "forgot_password"

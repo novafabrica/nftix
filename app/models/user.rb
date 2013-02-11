@@ -30,11 +30,11 @@ class User < ActiveRecord::Base
   validates :first_name,  :length => {:within => 2..50}
   validates :last_name,  :length => {:within => 2..50}
 
-  has_many :created_tickets, :class_name => 'Ticket', :foreign_key => 'creator_id'
-  has_many :tickets, :foreign_key => 'owner_id'
+  has_many :tickets, :class_name => 'Ticket', :foreign_key => 'creator_id'
+  has_many :assigned_tickets, :foreign_key => 'owner_id', :class_name => 'Ticket'
   has_many :comments
   has_many :group_assignments
-  has_many :ticket_groups, :through => :ticket_groups
+  has_many :ticket_groups, :through => :group_assignments, :source => :ticket_group
 
   # validates :username,
   #   :length => {:within => 8..25},
