@@ -16,6 +16,7 @@ gem 'foreman'
 gem 'redcarpet'
 gem 'mailman'
 gem 'yajl-ruby'
+gem 'unicorn'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -34,7 +35,7 @@ group :development, :test do
   gem 'thin'
   gem "steak"
   gem 'capistrano-novafabrica', :git => 'https://github.com/novafabrica/nf-cap-plugin'
-  gem 'capistrano'
+  gem 'capistrano',        :git => 'git://github.com/ai/capistrano', :branch => 'rails4'
   gem 'capistrano-ext'
   gem 'rspec-rails',        :git => 'git://github.com/rspec/rspec-rails.git'
   gem "rspec",              :git => "git://github.com/rspec/rspec.git"
