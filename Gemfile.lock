@@ -1,9 +1,9 @@
 GIT
-  remote: git://github.com/ai/capistrano
-  revision: b42c58e9026699f91a1664affa74486f60dc7fc8
-  branch: rails4
+  remote: git://github.com/capistrano/capistrano.git
+  revision: 96a16ad3cac569237215f3c06553e49173a7ee01
+  ref: 96a16
   specs:
-    capistrano (2.14.1)
+    capistrano (2.12.0)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)

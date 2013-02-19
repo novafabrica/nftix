@@ -35,7 +35,7 @@ group :development, :test do
   gem 'thin'
   gem "steak"
   gem 'capistrano-novafabrica', :git => 'https://github.com/novafabrica/nf-cap-plugin'
-  gem 'capistrano',        :git => 'git://github.com/ai/capistrano', :branch => 'rails4'
+  gem 'capistrano', github: 'capistrano/capistrano', ref: '96a16'
   gem 'capistrano-ext'
   gem 'rspec-rails',        :git => 'git://github.com/rspec/rspec-rails.git'
   gem "rspec",              :git => "git://github.com/rspec/rspec.git"
