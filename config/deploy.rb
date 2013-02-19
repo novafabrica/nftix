@@ -1,5 +1,6 @@
 require 'capistrano/ext/multistage'
 require 'capistrano/novafabrica/base'
+require 'capistrano/novafabrica/unicorn'
 require 'bundler/capistrano'
 #require 'capistrano/novafabrica/solr'
 
