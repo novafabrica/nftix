@@ -11,6 +11,7 @@ class TicketGroupsController < ApplicationController
   # GET /ticket_groups/1.json
   def show
     @tickets = @ticket_group.tickets
+    session[:ticket_group] = @ticket_group.id if params[:set_cookie]
   end
 
   # GET /ticket_groups/new
