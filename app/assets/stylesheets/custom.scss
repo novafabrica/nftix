@@ -81,8 +81,9 @@ div.main.container.centered {
 .ticket {
   border: 1px solid gray;
   border-radius: 5px;
-  padding:15px;
+  padding:5px 10px 5px 10px;
   .number {
+    padding: 15px 0px 0px 10px;
     float:left;
     font-size:26px;
     width:50px;
@@ -98,6 +99,7 @@ div.main.container.centered {
 
     .lead {
       margin-top:0px;
+      margin-bottom:2px;
     }
 
     .created-by {
