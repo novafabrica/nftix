@@ -8,7 +8,7 @@ describe TicketsController do
   end
 
   before(:each) do
-    controller.stub!(:logged_in?).and_return true
+    user_login
   end
 
   # Setup for shared examples
