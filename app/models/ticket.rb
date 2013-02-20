@@ -22,4 +22,7 @@ class Ticket < ActiveRecord::Base
   has_many :comments
 
   validates :name, :presence => true
+  validates :ticket_group_id, :presence => {:message => "Ticket must be assign to a Ticket Group"}
+
+  STATUSES = ['open', 'closed', 'pending']
 end

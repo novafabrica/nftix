@@ -18,5 +18,26 @@
 require 'spec_helper'
 
 describe Ticket do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "validation" do
+
+    it "should be valid with a name and ticket group" do
+      @ticket = FactoryGirl.build(:ticket)
+      @ticket.valid?.should be_true
+    end
+
+    it "should be invalid without a name" do
+      @ticket = FactoryGirl.build(:ticket, :name => "")
+      @ticket.valid?.should be_false
+      @ticket.errors[:name].should_not be_nil
+    end
+
+    it "should be invalid without a ticket_group" do
+      @ticket = FactoryGirl.build(:ticket, :ticket_group_id => "")
+      @ticket.valid?.should be_false
+      @ticket.errors[:ticket_group].should_not be_nil
+    end
+
+  end
+
 end
