@@ -10,18 +10,14 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
         <%= link_to "NFtix", tickets_path, :class => 'brand' %>
         <div class="nav-collapse">
           <ul class="nav">
             <li>
-              <%= ticket_group_chooser(@current_user).html_safe %>
+              <%= ticket_group_chooser(@current_user).try(:html_safe) %>
             </li>
             <li><%= link_to "Tickets", tickets_path %></li>
+            <li><%= link_to "New Ticket", new_ticket_path %></li>
             <li><%= link_to "Ticket Groups", ticket_groups_path %></li>
             <li><%= link_to "Users", users_path %></li>
           </ul>
