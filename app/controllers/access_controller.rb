@@ -11,7 +11,7 @@ class AccessController < ApplicationController
   def create
     @container_class = "centered"
     logout_keeping_session!('User')
-    user = User.authenticate(params['username'], params['password'])
+    user = User.authenticate(params['email'], params['password'])
     if user && user.enabled?
       self.current_user = user
       flash[:notice] = "You are now logged in."
