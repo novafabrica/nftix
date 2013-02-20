@@ -3,6 +3,8 @@ require 'ffaker'
 require 'fileutils'
 require 'open-uri'
 
+FactoryGirl.find_definitions
+
 def random(array, number=1)
   array.shuffle[0..(number - 1)].first
 end
@@ -32,6 +34,11 @@ ActiveRecord::Base.connection.execute("TRUNCATE ticket_groups")
   users + [random(User.all)] if random [0,1]
   users + [random(User.all)] if random [0,1]
   groups << FactoryGirl.create(:ticket_group, :name => Faker::Company.name)
+end
+
+for user in User.all do
+  user.ticket_groups = groups
+  user.save
 end
 
 ActiveRecord::Base.connection.execute("TRUNCATE tickets")
