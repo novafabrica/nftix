@@ -30,16 +30,16 @@ describe User do
       @user= FactoryGirl.create(:user)
     end
 
-    it "should be able to authenticate a User if a created username and correct password is given" do
-      User.authenticate(@user.username, "password").should == @user
+    it "should be able to authenticate a User if a created email and correct password is given" do
+      User.authenticate(@user.email, "password").should == @user
     end
 
-    it "should not authenticate a User if a username does not exist" do
+    it "should not authenticate a User if a email does not exist" do
       User.authenticate("fake@email.com", "password").should be_false
     end
 
-    it "should not authenticate a User if a created username and incorrect password is given" do
-      User.authenticate(@user.username, "incorrect").should == false
+    it "should not authenticate a User if a created email and incorrect password is given" do
+      User.authenticate(@user.email, "incorrect").should == false
     end
 
   end

@@ -20,7 +20,7 @@ render_views
   end
 
   before(:each) do
-    session['user_id'] = @user.id
+     login_as(@user)
   end
 
   after(:all) do

@@ -8,7 +8,7 @@ describe TicketsController do
   end
 
   before(:each) do
-    session['user_id'] = @user.id
+    controller.stub!(:logged_in?).and_return true
   end
 
   # Setup for shared examples

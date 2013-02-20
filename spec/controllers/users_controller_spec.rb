@@ -19,6 +19,8 @@ describe UsersController do
     DatabaseCleaner.clean
   end
 
+  before(:each) { controller.stub!(:logged_in?).and_return true }
+
   describe "GET 'index'" do
     it_behaves_like "a standard index action"
   end
