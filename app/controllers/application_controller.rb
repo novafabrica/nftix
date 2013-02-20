@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :correct_accept_headers
   before_filter :http_authenticate
-  before_filter :logged_in?
+  before_filter :confirm_logged_in
 
   layout 'application'
 
