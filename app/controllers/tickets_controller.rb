@@ -16,7 +16,7 @@ class TicketsController < ApplicationController
 
   # GET /tickets/new
   def new
-    @ticket = Ticket.new
+    @ticket = Ticket.new(:ticket_group_id => session[:ticket_group])
   end
 
   # GET /tickets/1/edit
@@ -26,8 +26,7 @@ class TicketsController < ApplicationController
   # POST /tickets
   # POST /tickets.json
   def create
-    @ticket = Ticket.new(ticket_params)
-
+    @ticket = @current_user.tickets.build(ticket_params)
     respond_to do |format|
       if @ticket.save
         format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
