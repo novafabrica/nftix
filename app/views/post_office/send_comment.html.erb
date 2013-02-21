@@ -1,0 +1,20 @@
+Write ABOVE THIS LINE to post a reply
+
+<hr />
+
+<p>
+  <small>
+    Group: <%= @ticket.ticket_group.name %>
+  </small>
+</p>
+
+<p><small><%= @ticket.name %> <%= @ticket.creator.full_name %></small></p>
+
+New comment: <br />
+
+
+<p><small><%= @comment.user.full_name %></small></p>
+
+<p><%= raw @comment.content %></p>
+
+This email was sent to: <%= @recipients %>

@@ -11,11 +11,13 @@ class PostOffice < ActionMailer::Base
     )
   end
 
-  def send_comment(ticket, comment, users)
-    @content = ticket.content
+  def send_comment(ticket, comment, recipients)
+    @ticket = ticket
+    @comment = comment
+    @recipients = recipients.map {|r| r.full_name}.to_sentence
     mail(
-      :recipients => users.map {|u| u.email},
-      :subject => ticket.title,
+      :to => recipients.map {|r| r.email },
+      :subject => ticket.name,
       :reply_to => "comments-#{ticket.id}@nftixs.com"
     )
   end

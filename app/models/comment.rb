@@ -15,4 +15,10 @@ class Comment < ActiveRecord::Base
   belongs_to :ticket
   belongs_to :user
 
+  after_create :send_email
+
+  def send_email
+    PostOffice.delay.send_comment(ticket, self, ticket.default_email_recipients(user))
+  end
+
 end
