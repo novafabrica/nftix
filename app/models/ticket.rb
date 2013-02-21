@@ -20,9 +20,15 @@ class Ticket < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
   belongs_to :assignee, :foreign_key => "owner_id", :class_name => "User"
   has_many :comments
+  before_create :set_default_status
 
   validates :name, :presence => true
   validates :ticket_group_id, :presence => {:message => "Ticket must be assign to a Ticket Group"}
 
   STATUSES = ['open', 'closed', 'pending']
+
+  def set_default_status
+    self.status = 'open'
+  end
+
 end
