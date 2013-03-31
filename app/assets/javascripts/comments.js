@@ -7,9 +7,9 @@ $(document).ready(function() {
     $('#comments').append($comment);
   });
 
-  $('.comment .delete').ajaxify_link("DELETE", deleteComment);
+  $('.comment .delete').ajaxify_link({method: "DELETE"}, deleteComment);
 
-  $('.comment .edit').ajaxify_link("GET", editComment);
+  $('.comment .edit').ajaxify_link({method: "GET"}, editComment);
 
 
 });
@@ -39,7 +39,7 @@ function editComment(link, response){
 }
 
 function bindCommentEvents($comment) {
-  $comment.find('.edit').ajaxify_link("GET", editComment);
-  $comment.find('.delete').ajaxify_link("DELETE", deleteComment);
+  $comment.find('.edit').ajaxify_link({method: "GET"}, editComment);
+  $comment.find('.delete').ajaxify_link({method: "DELETE"}, deleteComment);
 }
 

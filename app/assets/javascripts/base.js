@@ -34,14 +34,14 @@ jQuery.fn.ajaxify_form = function(method, callback) {
   });
 };
 
-jQuery.fn.ajaxify_link = function(method, callback) {
+jQuery.fn.ajaxify_link = function(options, callback) {
   $(this).click(function() {
     var self = $(this);
     $.ajax({
       url: $(this).attr("href"),
-      type: method,
+      type: options.method,
       dataType: "JSON",
-      data: $(this).serialize(),
+      data: options.data,
       success: function(response, textStatus) {
        callback(self, response, textStatus);
       }
@@ -96,3 +96,15 @@ jQuery.fn.addValidation = function(validation) {
   });
   return this;
 };
+
+function removeUsedListItem(list, chosen_action) {
+  chosen_action = $(chosen_action).wrap('li');
+  var index = list.indexOf(chosen_action);
+  if(index !== -1) {
+    list.splice(index, 1);
+    return createList(list, options);
+  }
+  else {
+    return createList(list, options);
+  }
+}

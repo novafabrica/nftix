@@ -3,7 +3,6 @@ require 'ffaker'
 require 'fileutils'
 require 'open-uri'
 
-FactoryGirl.find_definitions
 
 def random(array, number=1)
   array.shuffle[0..(number - 1)].first
@@ -50,8 +49,8 @@ ActiveRecord::Base.connection.execute("TRUNCATE tickets")
     :assignee => random(User.all),
     :name => Faker::Company.bs,
     :description => Faker::Lorem.paragraph(3),
-    :status => random(['open', 'closed', 'pending'])
-  )
+    :status => random(['open', 'closed', 'pending']),
+    :due_date => rand_time(Time.now, Time.now + 100.days))
 end
 
 ActiveRecord::Base.connection.execute("TRUNCATE comments")

@@ -1,25 +1,32 @@
+  <% user_choices =  User.all.inject({}) {|r,e| r[e.id] = e.full_name; r;} %>
   <% tickets.each do |ticket| %>
   <div id="ticket-#{ticket.id}" class="ticket clearfix">
     <div class='number'>
       <small>#</small><%= ticket.id %>
     </div>
     <div class='ticket-content'>
-      <div class="btn-group">
-        <a class="status btn dropdown-toggle" data-toggle="dropdown" href="#">
-          <%= ticket.status %>
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <!-- dropdown menu links -->
-        </ul>
-      </div>
-      <%= assignment_chooser(ticket)  if ticket.creator == @current_user %>
-      <%= ticket_status_chooser(ticket, {:classes => 'ticket-status-button no-follow'}) %>
+      <%= assignment_chooser(ticket, :data => {
+            :url => ticket_path(ticket),
+            :model => "ticket",
+            :choices => user_choices,
+            :param => 'owner_id',
+            :chosen => ticket.owner_id
+          })  if ticket.creator == @current_user %>
+      <%= ticket_status_chooser(ticket, {
+        :classes => 'ticket-status-button no-follow ajaxify',
+        :data => {
+          :url => ticket_path(ticket),
+          :model => "ticket",
+          :choices => Ticket::STATUSES.inject({}) {|r,e| r[e] = e; r;},
+          :param => 'status',
+          :chosen => ticket.status
+        }
+      }) %>
       <header><h1 class='lead'><%= link_to ticket.name, ticket_path(ticket) %></h1></header>
       <p><%= ticket.description %></p>
       <small class="created-by">By <%= ticket.creator.full_name %> <%= time_ago_in_words(ticket.created_at) %></small>
       <% unless ticket.comments.empty? %>
-        <small><%= pluralize(ticket.comments.count, "comment") %></small>
+        <small><%= pluralize(ticket.comments.length, "comment") %></small>
       <% end %>
     </div>
   </div>

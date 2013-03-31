@@ -1,11 +1,12 @@
 class TicketsController < ApplicationController
+  respond_to :json, :html, :js
   before_action :confirm_logged_in
-  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :set_ticket, :only => [:show, :edit, :update, :destroy]
 
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.includes(:comments, :creator, :assignee)
   end
 
   # GET /tickets/1
@@ -29,11 +30,11 @@ class TicketsController < ApplicationController
     @ticket = @current_user.tickets.build(ticket_params)
     respond_to do |format|
       if @ticket.save
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @ticket }
+        format.html { redirect_to @ticket, :notice => 'Ticket was successfully created.' }
+        format.json { render :action => 'show', :status => :created, :location => @ticket }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
+        format.html { render :action => 'new' }
+        format.json { render :json => @ticket.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -43,13 +44,16 @@ class TicketsController < ApplicationController
   def update
     respond_to do |format|
       if @ticket.update(ticket_params)
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to @ticket, :notice =>  'Ticket was successfully Updated.' }
+        format.js do
+          render :json => @ticket.to_json
+        end
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
+        format.html { render :action => 'edit' }
+        format.js { render :json  => @ticket.errors, :status =>  :unprocessable_entity }
       end
     end
+
   end
 
   # DELETE /tickets/1

@@ -11,8 +11,8 @@ module ApplicationHelper
 
   def split_button_group(active_link, actions=[], options={})
     html = ""
-    html << "<div class='btn-group #{options[:classes]}'>"
-    html << '<button class="btn">'
+    html << "<div class='btn-group #{options[:classes]}' data-button='#{options[:data]}'>"
+    html << '<button class="btn display">'
     html << active_link
     html << '</button>'
     html << '<button class="btn dropdown-toggle" data-toggle="dropdown">'
