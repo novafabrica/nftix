@@ -88,7 +88,7 @@ describe User do
 
     it "should create a remember_token" do
       @user = FactoryGirl.create(:user)
-      User.stub!(:create_token).and_return("ABC")
+      User.stub(:create_token).and_return("ABC")
       lambda do
         @user.remember_me_until(Time.now + 3000)
       end.should change(@user, :remember_token).from(nil).to("ABC")
@@ -108,7 +108,7 @@ describe User do
 
     it "should create a new remember_token" do
       @user = FactoryGirl.create(:user, :remember_token => "abc", :remember_token_expires_at => Time.now + 30000)
-      User.stub!(:create_token).and_return("DEF")
+      User.stub(:create_token).and_return("DEF")
       lambda do
         @user.refresh_token
       end.should change(@user, :remember_token).from("abc").to("DEF")

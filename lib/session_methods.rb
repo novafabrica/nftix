@@ -44,7 +44,6 @@ module SessionMethods
       if user && user.remember_token?
         if user.enabled
           self.current_user = user
-          session[:browser_token] = user.browser_token if class_name == "member"
           handle_remember_cookie! false, class_name # freshen cookie token (keeping date)
           return self.current_user
         else

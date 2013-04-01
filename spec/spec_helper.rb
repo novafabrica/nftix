@@ -47,7 +47,7 @@ RSpec.configure do |config|
   config.order = "random"
 
   def user_login
-    User.stub!(:create_hashed_password)
+    User.stub(:create_hashed_password)
     @user = FactoryGirl.create(:user)
     mark_as_logged_in(@user)
   end

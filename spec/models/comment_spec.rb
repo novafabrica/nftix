@@ -18,7 +18,7 @@ describe Comment do
 
     it "sends an email to everyone in the ticket group by default" do
     @delay = PostOffice
-    PostOffice.stub!(:delay).and_return(@delay)
+    PostOffice.stub(:delay).and_return(@delay)
     ticket_group = FactoryGirl.create(:ticket_group)
     user = FactoryGirl.create(:user,  :ticket_groups => [ticket_group])
     user2 = FactoryGirl.create(:user,  :ticket_groups => [ticket_group])

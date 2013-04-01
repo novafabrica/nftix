@@ -62,7 +62,7 @@ shared_examples "a standard new action" do
 
     it "should create a new instance and assign it to an instance variable" do
       newitem = item.class.new
-      item.class.stub!(:new).and_return(newitem)
+      item.class.stub(:new).and_return(newitem)
       get :new, outer_params
       assigns[singular.to_sym].should == newitem
     end

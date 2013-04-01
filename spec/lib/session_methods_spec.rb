@@ -8,7 +8,7 @@ describe ApplicationController, :behaviour_type => :controller do
   include RSpec::Rails::ControllerExampleGroup
 
   before do
-    stub!(:authenticate_with_http_basic).and_return nil
+    double(:authenticate_with_http_basic)
   end
 
   #This doesn't test anything!
@@ -17,7 +17,7 @@ describe ApplicationController, :behaviour_type => :controller do
     before do
       @user = FactoryGirl.create(:user)
       login_as(@user)
-      stub!(:reset_session)
+      double(:reset_session)
     end
 
     it "should save id to session" do
@@ -30,7 +30,7 @@ describe ApplicationController, :behaviour_type => :controller do
     before do
       @user = FactoryGirl.create(:user)
       login_as(@user)
-      stub!(:reset_session)
+      double(:reset_session)
     end
 
     it 'resets the session' do
@@ -46,7 +46,7 @@ describe ApplicationController, :behaviour_type => :controller do
       current_user(User).should be_nil
     end
     it 'kills :id session' do
-      session.stub!(:[]=)
+      session
       session.should_receive(:[]=).with(:user_id, nil).at_least(:once)
       logout_killing_session!('user')
     end
@@ -67,7 +67,6 @@ describe ApplicationController, :behaviour_type => :controller do
     before do
       @user = FactoryGirl.create(:user)
       login_as(@user)
-      stub!(:reset_session)
     end
 
     it 'does not reset the session' do
@@ -86,7 +85,7 @@ describe ApplicationController, :behaviour_type => :controller do
     end
 
     it 'kills :id session' do
-      session.stub!(:[]=)
+      session.stub(:[]=)
       session.should_receive(:[]=).with(:user_id, nil).at_least(:once)
       logout_keeping_session!('user')
     end
@@ -119,7 +118,7 @@ describe ApplicationController, :behaviour_type => :controller do
       session[:user_id] = nil
     end
     it 'logs in with cookie' do
-      stub!(:cookies).and_return({ :user_auth_token => 'hello!'})
+      cookies.stub('[]').with(:user_auth_token).and_return('hello!')
       logged_in?.should be_true
     end
 
@@ -136,9 +135,12 @@ describe ApplicationController, :behaviour_type => :controller do
 
     it 'fails expired cookie login' do
       set_remember_token 'hello!', 5.minutes.ago
-      stub!(:cookies).and_return({ :auth_token => 'hello!' , :class => "User" })
+      cookies.stub('[]').with(:user_auth_token).and_return('hello!')
       logged_in?.should_not be_true
     end
+  end
+
+  def reset_session
   end
 
 end
