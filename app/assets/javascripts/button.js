@@ -61,7 +61,7 @@ jQuery.fn.ajaxifiedDropDown = function() {
 };
 
 $(document).ready(function() {
-    $('.btn-group').ajaxifiedDropDown();
+    $('.btn-group.ajaxify').ajaxifiedDropDown();
 
 });
 

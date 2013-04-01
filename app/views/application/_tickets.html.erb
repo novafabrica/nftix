@@ -5,7 +5,9 @@
       <small>#</small><%= ticket.id %>
     </div>
     <div class='ticket-content'>
-      <%= assignment_chooser(ticket, :data => {
+      <%= assignment_chooser(ticket,
+        :classes => 'ajaxify',
+          :data => {
             :url => ticket_path(ticket),
             :model => "ticket",
             :choices => user_choices,
