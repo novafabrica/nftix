@@ -11,7 +11,6 @@ var typedValue = null;
 
 // set a variable to detect if browser is IE8.
 // Can be performed before the document is ready (faster).
-var browser_is_ie8 = $.browser.msie && ( $.browser.version.substring(0, 2) == "8." || navigator.userAgent.indexOf('Trident') !== -1 );
 
 $(document).ready(function() {
 

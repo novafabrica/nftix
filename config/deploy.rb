@@ -2,6 +2,7 @@ require 'capistrano/ext/multistage'
 require 'capistrano/novafabrica/base'
 require 'capistrano/novafabrica/unicorn'
 require 'bundler/capistrano'
+require 'sidekiq/capistrano'
 #require 'capistrano/novafabrica/solr'
 
 default_run_options[:pty] = true
