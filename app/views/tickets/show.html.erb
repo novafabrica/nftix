@@ -16,7 +16,7 @@
 
 <p>
   <strong>Assigned To:</strong>
-  <%= @ticket.assignee ? @ticket.assignee.try(:full_name) : 'None' %>
+  <%= @ticket.assignee ? @ticket.assignee_name %>
 </p>
 
 <p>

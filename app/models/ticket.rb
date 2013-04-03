@@ -33,6 +33,10 @@ class Ticket < ActiveRecord::Base
     self.status = 'open'
   end
 
+  def assignee_name
+    assignee ? assignee.full_name : "None"
+  end
+
   def default_email_recipients(user = nil)
     ticket_group.users - [user]
   end

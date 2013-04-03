@@ -11,21 +11,34 @@ gem 'jbuilder', '~> 1.0.1'
 gem 'sunspot'
 gem 'sidekiq'
 gem 'nice_password'
-gem 'mail_view'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'static'
+gem 'foreman'
 gem 'redcarpet'
 gem 'mailman'
 gem 'yajl-ruby'
+gem 'unicorn'
+gem "github_api"
 
+
+# Gems used only for assets and not required
+# in production environments by default.
 group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
   gem 'sass-rails',   github: 'rails/sass-rails'
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :development do
+  gem 'annotate'
+  gem 'mail_view'
+end
+
 group :development, :test do
   gem 'thin'
   gem "steak"
+  gem 'capistrano-novafabrica', :git => 'https://github.com/novafabrica/nf-cap-plugin'
+  gem 'capistrano', github: 'capistrano/capistrano', ref: '96a16'
+  gem 'capistrano-ext'
   gem 'rspec-rails',        :git => 'git://github.com/rspec/rspec-rails.git'
   gem "rspec",              :git => "git://github.com/rspec/rspec.git"
   gem "rspec-core",         :git => "git://github.com/rspec/rspec-core.git"
@@ -37,8 +50,11 @@ end
 
 group :test do
   # Pretty printed test output
+  gem 'simplecov', :require => false # Will install simplecov-html as a dependency
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'spork'
+  gem 'launchy'    # So you can do Then show me the page
   gem 'email_spec'
   gem 'shoulda-matchers'
   gem "timecop"
