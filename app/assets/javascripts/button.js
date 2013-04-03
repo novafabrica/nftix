@@ -41,7 +41,7 @@ jQuery.fn.ajaxifiedDropDown = function() {
                 options.method = "PATCH";
                 options.data = {};
                 var model = options.data[button.model] = {};
-                model[button.param] = key;
+                model[button.param] = key === 0 ? null : key;
                 var $a = $('<a>');
                 $a.html(choices[key]);
                 $a.attr("href", button.url);

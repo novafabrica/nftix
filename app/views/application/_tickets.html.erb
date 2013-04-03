@@ -1,4 +1,4 @@
-  <% user_choices =  User.all.inject({}) {|r,e| r[e.id] = e.full_name; r;} %>
+  <% user_choices =  User.all.inject({0 => "None" }) {|r,e| r[e.id] = e.full_name; r;} %>
   <% tickets.each do |ticket| %>
   <div id="ticket-#{ticket.id}" class="ticket clearfix">
     <div class='number'>
