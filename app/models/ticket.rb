@@ -24,6 +24,8 @@ class Ticket < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :ticket_group_id, :presence => {:message => "Ticket must be assign to a Ticket Group"}
+  #validates :owner_id, :presence => {:message => "You must assign a ticket to a user"}
+
 
   STATUSES = ['open', 'closed', 'pending']
 
