@@ -7,7 +7,10 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+
+    <div class='flex'>
+      <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
         <%= link_to "NFtix", tickets_path, :class => 'brand' %>
@@ -27,11 +30,12 @@
     </div>
     </div>
     <%= render(:partial => 'layouts/flash_messages') %>
-
-    <div class='flex'>
       <div class="container main <%= @container_class %>">
         <%= yield %>
+        <span class="clearfix"></span>
       </div>
+      <span class="clearfix"></span>
+      <div class="push"><!--//--></div>
     </div>
     <footer class='footer'>
       ©novafabrica.com
