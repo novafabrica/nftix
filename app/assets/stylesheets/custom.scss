@@ -8,8 +8,14 @@ html, body {
   height: 100%;
 }
 
-.navbar-inverse .navbar-inner {
-  background-image: -webkit-gradient(linear, 0 0, 0 150%, from(#522), to(#944));
+.navbar, .navbar-inverse  {
+  background:black;
+  margin-bottom:0 !important;
+}
+
+.navbar-inner-div {
+  width:940px;
+  margin:auto;
 }
 
 html body {

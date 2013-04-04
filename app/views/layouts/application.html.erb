@@ -10,25 +10,26 @@
 
 
     <div class='flex'>
-      <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <%= link_to "NFtix", tickets_path, :class => 'brand' %>
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li>
-              <%= ticket_group_chooser(@current_user).try(:html_safe) %>
-            </li>
-            <li><%= link_to "Tickets", tickets_path %></li>
-            <li><%= link_to "New Ticket", new_ticket_path %></li>
-            <li><%= link_to "Ticket Groups", ticket_groups_path %></li>
-            <li><%= link_to "Users", users_path %></li>
-          </ul>
+      <div class="navbar">
+        <div class="navbar-inner-div">
+          <div class="container">
+            <%= link_to "NFtix", tickets_path, :class => 'brand' %>
+            <div class="nav-collapse">
+              <ul class="nav">
+                <li>
+                  <%= ticket_group_chooser(@current_user).try(:html_safe) %>
+                </li>
+                <li><%= link_to "Tickets", tickets_path %></li>
+                <li><%= link_to "New Ticket", new_ticket_path %></li>
+                <li><%= link_to "Ticket Groups", ticket_groups_path %></li>
+                <li><%= link_to "Users", users_path %></li>
+              </ul>
 
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    </div>
+      <span class="clearfix"></span>
     <%= render(:partial => 'layouts/flash_messages') %>
       <div class="container main <%= @container_class %>">
         <%= yield %>
