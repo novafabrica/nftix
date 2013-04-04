@@ -21,7 +21,7 @@
 
   <div class="field">
     <%= f.label :owner_id, "Assigned To" %>
-    <%= f.collection_select :owner_id, User.all, :id, :full_name %>
+    <%= f.select :owner_id, options_for_select(User.form_dropdown, @ticket.owner_id || "") %>
   </div>
 
 </div>

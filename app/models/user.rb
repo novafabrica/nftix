@@ -90,6 +90,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def self.form_dropdown
+    self.all.map {|u| [u.full_name, u.id]} + [["None", ""]]
+  end
+
   def self.authenticate(email="", password="")
     user = self.find_by_email(email)
     return (user && user.authentication_password  == password) ? user : false

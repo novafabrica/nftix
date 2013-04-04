@@ -142,9 +142,9 @@ GIT
 
 GIT
   remote: https://github.com/novafabrica/nf-cap-plugin
-  revision: 082d234dcd5ea34c1d4ef016c331bace791618da
+  revision: 520d6e90850e5b24db6cdea01c6138dd8693efd2
   specs:
-    capistrano-novafabrica (1.0.5)
+    capistrano-novafabrica (1.0.6)
 
 GEM
   remote: https://rubygems.org/
