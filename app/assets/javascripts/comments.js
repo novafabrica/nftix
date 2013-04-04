@@ -21,19 +21,19 @@ function deleteComment(link){
 
 function editComment(link, response){
   var $comment = $(link).closest('.comment');
-  var $oldComment = $($comment.html());
+  var $oldComment = $comment.clone();
   var $form = $(response['html']);
   $form.find('.cancel-comment-edit').click(
     function() {
-    bindCommentEvents($oldComment);
-    $comment.html($oldComment);
+    $comment.html($oldComment.html());
+    bindCommentEvents($comment);
     return false;
     }
   );
   $form.ajaxify_form('PUT', function(node, response, textStatus){
     var $newComment = $(response['html']);
     bindCommentEvents($newComment);
-    $comment.html($newComment);
+    $comment.replaceWith($newComment);
   });
   $comment.html($form);
 }
