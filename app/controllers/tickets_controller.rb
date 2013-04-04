@@ -6,7 +6,7 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.includes(:comments, :creator, :assignee)
+    @tickets = Ticket.includes(:comments, :creator, :assignee).in_progress
   end
 
   # GET /tickets/1
@@ -59,7 +59,7 @@ class TicketsController < ApplicationController
   # DELETE /tickets/1
   # DELETE /tickets/1.json
   def destroy
-    @ticket.destroy
+    @ticket.update_attribute(:status, 'deleted')
     respond_to do |format|
       format.html do
         flash[:notice] = "Ticket was destroyed"

@@ -26,6 +26,11 @@ class Ticket < ActiveRecord::Base
   validates :ticket_group_id, :presence => {:message => "Ticket must be assign to a Ticket Group"}
   #validates :owner_id, :presence => {:message => "You must assign a ticket to a user"}
 
+  scope :in_progress, where(['tickets.status = ? OR tickets.status = ? ', 'open', 'pending'])
+  scope :opened, where(:status => 'open')
+  scope :pending_approval, where(:status => 'pending')
+  scope :deleted, where(:status => 'deleted')
+
 
   STATUSES = ['open', 'closed', 'pending']
 

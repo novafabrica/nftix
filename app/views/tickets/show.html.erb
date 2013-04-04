@@ -1,5 +1,6 @@
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
-<%= link_to 'Back', tickets_path %>
+<%= link_to 'Back', tickets_path %> |
+<%= link_to 'Delete', ticket_path(@ticket), :method => "delete" %>
 
 <p id="notice"><%= notice %></p>
 <h2>#<%= @ticket.id %> - <%= @ticket.name %> <small style='margin-left:10px;'><%= @ticket.status %></small></h2>
