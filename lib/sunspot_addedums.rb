@@ -1,6 +1,6 @@
 module Sunspot
   module Type
-    
+
     #Auto Completion
     class AutocompleteType < AbstractType
       def indexed_name(name) #:nodoc:
@@ -15,6 +15,6 @@ module Sunspot
         string
       end
     end
-    
+
   end
 end
