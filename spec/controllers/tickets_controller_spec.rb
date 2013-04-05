@@ -49,6 +49,5 @@ describe TicketsController do
   end
 
   describe "DELETE 'destroy'" do
-    it_behaves_like "a standard destroy action"
   end
 end
