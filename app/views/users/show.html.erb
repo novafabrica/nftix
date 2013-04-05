@@ -1,8 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <h2><%= @user.full_name %></h2>
-<h3>tickets</h3>
-<%= render :partial => 'application/tickets', :locals => {:tickets => @tickets} %>
+
+<p>
+  Ticket Groups: <%= @user.ticket_groups.pluck(:name).join(', ') %>
+</p>
+
+<h3>Created Tickets</h3>
+<%= render :partial => 'application/tickets', :locals => {:tickets => @created_tickets} %>
+
+<h3>Ticket Assignments</h3>
+<%= render :partial => 'application/tickets', :locals => {:tickets => @assigned_tickets} %>
+
+
+<h3>TicketS to Review</h3>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
