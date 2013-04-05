@@ -8,9 +8,10 @@ html, body {
   height: 100%;
 }
 
-.navbar, .navbar-inverse  {
+.navbar {
   background:black;
   margin-bottom:0 !important;
+  overflow: visible;
 }
 
 .navbar-inner-div {
