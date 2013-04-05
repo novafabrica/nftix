@@ -17,7 +17,9 @@ class TicketsController < ApplicationController
 
   # GET /tickets/new
   def new
-    @ticket = Ticket.new(:ticket_group_id => session[:ticket_group])
+    params[:ticket] ||= {}
+    ticket_params = {:ticket_group_id => session[:ticket_group]}.merge(params[:ticket])
+    @ticket = Ticket.new(ticket_params)
   end
 
   # GET /tickets/1/edit
