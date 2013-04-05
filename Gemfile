@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails',     github: 'rails/rails'
+gem 'rails',     github: 'rails/rails', ref: '202041e762a98cb433c3a24a0b03308d4e05a99d'
 gem 'arel',      github: 'rails/arel'
 gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
 gem 'pg'
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'
 gem 'jquery-rails', :git => 'git://github.com/rails/jquery-rails.git'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.0.1'
