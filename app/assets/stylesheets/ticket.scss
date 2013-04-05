@@ -11,6 +11,16 @@
   border-radius: 5px;
   margin-bottom:10px;
   padding:5px 10px 5px 10px;
+  h2 {
+    font-size:16px;
+    color:gray;
+  }
+  .comments-on-index {
+    small {display:none;}
+    #comment_content {
+      width:710px;
+    }
+  }
   .number {
     padding: 15px 0px 0px 10px;
     float:left;

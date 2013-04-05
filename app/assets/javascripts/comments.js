@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $('form.comment_form').ajaxify_form('POST', function(node, response, textStatus){
+  $('form.full-comment-form').ajaxify_form('POST', function(node, response, textStatus){
     node.find('#comment_content').val('');
     var $comment = $(response['html']);
     bindCommentEvents($comment);
@@ -11,8 +11,29 @@ $(document).ready(function() {
 
   $('.comment .edit').ajaxify_link({method: "GET"}, editComment);
 
+  $('.new-comment .create').click(function() {
+    toggelCommentForm($(this));
+    return false;
+  });
 
 });
+
+function toggelCommentForm(node) {
+  var $form = node.siblings('form').show();
+  $form.ajaxify_form('POST', function(node, response, textStatus){
+    node.find('#comment_content').val('');
+    var $comment = $(response['html']);
+    bindCommentEvents($comment);
+    node.parent().siblings('.ticket-content').find('.comments-on-index').append($comment);
+    node.hide();
+    node.unbind();
+  });
+  $form.find('.cancel-comment').click( function() {
+    $form.hide();
+    $form.unbind();
+    return false;
+  });
+}
 
 function deleteComment(link){
   $(link).closest('.comment').remove();

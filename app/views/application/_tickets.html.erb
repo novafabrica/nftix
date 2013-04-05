@@ -24,12 +24,42 @@
           :chosen => ticket.status
         }
       }) %>
-      <header><h1 class='lead'><%= link_to ticket.name, ticket_path(ticket) %></h1></header>
-      <p><%= ticket.description %></p>
-      <small class="created-by">By <%= ticket.creator.full_name %> <%= time_ago_in_words(ticket.created_at) %></small>
-      <% unless ticket.comments.empty? %>
-        <small><%= pluralize(ticket.comments.length, "comment") %></small>
-      <% end %>
+        <header>
+          <h1 class='lead'>
+            <%= link_to ticket.name, ticket_path(ticket) %></h1>
+          </header>
+        <p><%= ticket.description %></p>
+        <small class="created-by">Created By: <%= ticket.creator.full_name %> <%= time_ago_in_words(ticket.created_at) %></small>
+        <% unless ticket.comments.empty? %>
+          <small><%= pluralize(ticket.comments.length, "comment") %></small>
+        <div class="comments-on-index">
+          <% last_comment = ticket.comments.last %>
+          <% if last_comment %>
+            <h2><%= last_comment.user.full_name %></h2>
+            <p><%= sanitize last_comment.content %></p>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+    <span class="clearfix"></span>
+
+    <div class="new-comment">
+
+        <%= link_to('Comment', "#", :style => "float:left;", :class => 'create btn btn-primary', :'data-ticket' => ticket.id) %>
+
+        <span class="clearfix"></span>
+
+        <%= form_for [ticket, Comment.new], :html => {:class => 'new-comment-form hidden'} do |f| %>
+
+          <div id="comment-container">
+            <%= f.text_area(:content, :required => true, :size => "30x10") %>
+          </div>
+
+          <div class='button-container'>
+            <%= link_to("Cancel", "#", :class => 'cancel-comment btn  btn-inverse') %>
+            <%= f.submit "Comment", :class => 'btn' %>
+          </div>
+        <% end %>
     </div>
   </div>
  <% end %>

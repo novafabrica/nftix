@@ -1,0 +1,31 @@
+form.full-comment-form, form.new-comment-form {
+  #comment-container {
+    padding:10px;
+    border:1px solid #e6e6e6;
+    background:#f6f6f6;
+    border-radius: 5px;
+  }
+  dd {margin-left:0px;}
+  #comment_content {
+    width:900px;
+    height:100px;
+  }
+  input[type='submit'] {
+    margin:20px 0px 20px 10px;
+    float:left;
+  }
+  .button-container {
+    float:right;
+  }
+  .cancel-comment-edit, .cancel-comment {
+    margin-top:20px;
+    float:left;
+  }
+}
+
+.new-comment {
+  a { margin:10px 0;}
+   form #comment_content {
+    width:880px;
+   }
+}
