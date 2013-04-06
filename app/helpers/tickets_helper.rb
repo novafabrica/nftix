@@ -22,6 +22,7 @@ module TicketsHelper
     return ' btn-success' if status == 'open'
     return ' btn-info' if status == 'pending'
     return ' btn-success' if status == 'closed'
+    'unknown'
   end
 
 end
