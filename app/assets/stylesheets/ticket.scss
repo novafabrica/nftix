@@ -1,20 +1,78 @@
-.assignment-button {
-  float:right;
-}
-
-.ticket-status-button  {
-  width:100px;
-}
-
 .ticket {
+  position:relative;
   border: 1px solid gray;
   border-radius: 5px;
   margin-bottom:10px;
-  padding:5px 10px 5px 10px;
+
+  .arrow {
+    position:absolute;
+    right:0px;
+    top:50%;
+    height:75px;
+    margin-top:-55px;
+    background:green;
+    font-size:60px;
+    color:white;
+    width:30px;
+    border-radius: 10px 0px 0px 10px;
+    line-height: 75px;
+    padding:0px;
+
+  }
+
   h2 {
     font-size:16px;
     color:gray;
+    height:25px;
   }
+  .right-column {
+    float:left;
+    width:720px;
+  }
+
+  .left-column {
+    padding:10px 0px 20px 25px;
+    float:left;
+    width:150px;
+    .display {
+      width:100px;
+      font-size:11px;
+    }
+  }
+
+  .new-comment {
+    padding-left:25px;
+    background:#ebebff;
+    border-radius: 0 0 5px 5px;
+    form {
+      margin:0;
+    }
+    #comment_content {
+      width:880px;
+    }
+
+  .button-container {
+    float:right;
+    margin-right:20px;
+  }
+
+  }
+
+  .created-by {
+    color:gray;
+    text-weight:bold;
+    margin:5px 0;
+  }
+
+  .lead {
+    margin-top:10px;
+    margin-bottom:5px;
+    a {
+      font-size:26px;
+      letter-spacing:0.12em;
+    }
+  }
+
   .comments-on-index {
     small {display:none;}
     #comment_content {
@@ -22,7 +80,6 @@
     }
   }
   .number {
-    padding: 15px 0px 0px 10px;
     float:left;
     font-size:26px;
     width:50px;
@@ -36,17 +93,6 @@
     padding: 15px 0 20px 50px;
     width:750px;
 
-    .lead {
-      margin-top:10px;
-      margin-bottom:2px;
-    }
-
-    .created-by {
-      color:gray;
-    }
-    .status {
-      float:right;
-    }
   }
 
 }

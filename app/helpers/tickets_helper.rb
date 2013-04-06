@@ -5,6 +5,7 @@ module TicketsHelper
       link_to(status, ticket_path(ticket, :ticket => {:status => status}), :method => :patch) if status !=ticket.status
     end
     options[:data] = options[:data].to_json
+    options[:button_classes] ? options[:button_classes] += get_status_color(ticket.status)  : options[:button_classes] = get_status_color(ticket.status)
     split_button_group(ticket.status, actions, options).html_safe
   end
 
@@ -15,6 +16,12 @@ module TicketsHelper
     #TODO there must be a way to do this in split button
     options[:data] = options[:data].to_json
     split_button_group(ticket.assignee_name, actions, options).html_safe
+  end
+
+  def get_status_color(status)
+    return ' btn-success' if status == 'open'
+    return ' btn-info' if status == 'pending'
+    return ' btn-success' if status == 'closed'
   end
 
 end

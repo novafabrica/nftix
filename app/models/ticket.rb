@@ -46,4 +46,10 @@ class Ticket < ActiveRecord::Base
     ticket_group.users - [user]
   end
 
+  def due?
+    return false unless due_date
+    return false if Time.now > due_date
+    true
+  end
+
 end

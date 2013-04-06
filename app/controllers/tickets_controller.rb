@@ -6,7 +6,7 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.includes(:comments, :creator, :assignee).in_progress
+    @tickets = Ticket.includes({ :comments => :user}, :creator, :assignee).in_progress
   end
 
   # GET /tickets/1

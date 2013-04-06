@@ -24,7 +24,7 @@ function toggelCommentForm(node) {
     node.find('#comment_content').val('');
     var $comment = $(response['html']);
     bindCommentEvents($comment);
-    node.parent().siblings('.ticket-content').find('.comments-on-index').append($comment);
+    node.parent().siblings('.right-column').find('.comments-on-index').append($comment);
     node.hide();
     node.unbind();
   });

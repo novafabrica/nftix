@@ -1,37 +1,59 @@
   <% user_choices =  User.all.inject({0 => "None" }) {|r,e| r[e.id] = e.full_name; r;} %>
   <% tickets.each do |ticket| %>
   <div id="ticket-#{ticket.id}" class="ticket clearfix">
-    <div class='number'>
-      <small>#</small><%= ticket.id %>
-    </div>
-    <div class='ticket-content'>
-      <%= assignment_chooser(ticket,
-        :classes => 'ajaxify assignment-button',
+
+    <div class="left-column">
+      <div class='number'>
+        <small>#</small><%= ticket.id %>
+      </div>
+      <span class="clearfix"></span>
+            <br />
+
+        <p>
+          <small class="created-by">
+            By: <%= ticket.creator.full_name %>
+          </small>
+        </p>
+
+        <%= ticket_status_chooser(ticket, {
+          :button_classes => 'btn-small',
+          :classes => 'ticket-status-button no-follow ajaxify',
           :data => {
             :url => ticket_path(ticket),
             :model => "ticket",
-            :choices => user_choices,
-            :param => 'owner_id',
-            :chosen => ticket.owner_id
-          })  if ticket.creator == @current_user %>
-      <%= ticket_status_chooser(ticket, {
-        :classes => 'ticket-status-button no-follow ajaxify',
-        :data => {
-          :url => ticket_path(ticket),
-          :model => "ticket",
-          :choices => Ticket::STATUSES.inject({}) {|r,e| r[e] = e; r;},
-          :param => 'status',
-          :chosen => ticket.status
-        }
-      }) %>
+            :choices => Ticket::STATUSES.inject({}) {|r,e| r[e] = e; r;},
+            :param => 'status',
+            :chosen => ticket.status
+          }
+        }) %>
+
+        <span class="clearfix"></span>
+        <br />
+
+        <%if ticket.creator == @current_user %>
+        <%= assignment_chooser(ticket,
+          :button_classes => 'btn-small',
+          :classes => 'ajaxify assignment-button',
+            :data => {
+              :url => ticket_path(ticket),
+              :model => "ticket",
+              :choices => user_choices,
+              :param => 'owner_id',
+              :chosen => ticket.owner_id
+            }) %>
+        <% else %>
+          <small class="btn btn-small display"><%= ticket.assignee.full_name %></small>
+        <% end %>
+
+
+      </div>
+
+      <div class="right-column">
         <header>
           <h1 class='lead'>
             <%= link_to ticket.name, ticket_path(ticket) %></h1>
           </header>
         <p><%= ticket.description %></p>
-        <small class="created-by">Created By: <%= ticket.creator.full_name %> <%= time_ago_in_words(ticket.created_at) %></small>
-        <% unless ticket.comments.empty? %>
-          <small><%= pluralize(ticket.comments.length, "comment") %></small>
         <div class="comments-on-index">
           <% last_comment = ticket.comments.last %>
           <% if last_comment %>
@@ -39,27 +61,29 @@
             <p><%= sanitize last_comment.content %></p>
           <% end %>
         </div>
-        <% end %>
       </div>
+
     <span class="clearfix"></span>
 
     <div class="new-comment">
 
-        <%= link_to('Comment', "#", :style => "float:left;", :class => 'create btn btn-primary', :'data-ticket' => ticket.id) %>
+        <%= link_to('Comment', "#", :style => "float:left;", :class => 'create', :'data-ticket' => ticket.id) %>
 
         <span class="clearfix"></span>
 
         <%= form_for [ticket, Comment.new], :html => {:class => 'new-comment-form hidden'} do |f| %>
 
-          <div id="comment-container">
-            <%= f.text_area(:content, :required => true, :size => "30x10") %>
-          </div>
+          <%= f.text_area(:content, :required => true, :size => "30x10") %>
 
           <div class='button-container'>
-            <%= link_to("Cancel", "#", :class => 'cancel-comment btn  btn-inverse') %>
-            <%= f.submit "Comment", :class => 'btn' %>
+            <%= link_to("Cancel", "#", :class => 'cancel-comment btn  btn-inverse btn-small') %>
+            <%= f.submit "Comment", :class => 'btn btn-small' %>
           </div>
+          <span class="clearfix"></span>
+
         <% end %>
     </div>
+
+    <%= link_to "|", "#", :class => 'btn arrow' %>
   </div>
  <% end %>
